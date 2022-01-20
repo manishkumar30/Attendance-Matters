@@ -13,8 +13,11 @@ data class AttendanceData (
     @ColumnInfo(name = "totalPresent")
     var totalPresent : Int,
 
-    @ColumnInfo(name = "totalClasses")
-    var totalClasses : Int,
+    @ColumnInfo(name = "totalAbsent")
+    var totalAbsent : Int,
+
+    @ColumnInfo(name = "cutoff")
+    var cutoff:Int,
     )
 {
     @PrimaryKey(autoGenerate = true)
