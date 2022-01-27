@@ -6,6 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Attendance")
 data class AttendanceData (
+    @PrimaryKey(autoGenerate = true)
+    var id:Int?=null,
 
     @ColumnInfo(name = "subjectName")
     var subjectName : String,
@@ -17,9 +19,8 @@ data class AttendanceData (
     var totalAbsent : Int,
 
     @ColumnInfo(name = "cutoff")
-    var cutoff:Int,
+    var cutoff:Float,
+
+    @ColumnInfo(name = "lectures")
+    var n:Int
     )
-{
-    @PrimaryKey(autoGenerate = true)
-    var id:Int?=null
-}

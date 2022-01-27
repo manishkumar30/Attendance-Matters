@@ -6,12 +6,15 @@ import androidx.room.Dao
 
 @Dao
 interface Dao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     suspend fun insert(item:AttendanceData)
 
     @Delete
     suspend fun delete(item:AttendanceData)
 
+    @Update
+    suspend fun update(item: AttendanceData)
+
     @Query("select * from Attendance")
-    suspend fun getAllData():LiveData<List<AttendanceData>>
+     fun getAllData():LiveData<List<AttendanceData>>
 }
