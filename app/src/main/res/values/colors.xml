@@ -1,2 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <color name="Black">#000000</color>
+    <color name="SubjectColor">#880E4F</color>
+    <color name="background">#E2DEEC</color>
+    <color name="Total">#0C1995</color>
+    <color name="teal_700">#178DEA</color>
+    <color name="number">#252020</color>
+    <color name="white">#FFFFFF</color>
+    <color name="lecture">#A0BFEF</color>
+    <color name="Attendance">#0D47A1</color>
+<color name="dialog">#FFFFFF</color>
+
+</resources>
