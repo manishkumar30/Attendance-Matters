@@ -61,7 +61,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/cutoff"
-                    android:maxLength="3"
+                    android:maxLength="4"
                     android:inputType="numberDecimal"
                     android:textColorHint="#252020"
                     android:textColor="#252020"
@@ -87,6 +87,7 @@
                     android:textColor="#252020"
                     android:textSize="18sp"
                     android:backgroundTint="#178DEA"
+                    android:maxLength="4"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -107,6 +108,7 @@
                     android:textColorHint="#252020"
                     android:textColor="#252020"
                     android:textSize="18sp"
+                    android:maxLength="4"
                     android:backgroundTint="#178DEA"
                     />
 
