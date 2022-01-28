@@ -1,11 +1,17 @@
 package com.example.attendancetracker
 
+import android.app.AlertDialog
 import android.app.Dialog
+import android.content.DialogInterface
+import android.content.DialogInterface.BUTTON_POSITIVE
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.service.controls.actions.FloatAction
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -31,6 +37,7 @@ class MainActivity : AppCompatActivity(), adapter.clickinterface, adapter.editin
         recyclerView.layoutManager=LinearLayoutManager(this)
         recyclerView.adapter=adapter
 
+
         val repository=AttendanceRepository(AttendanceDatabase(this))
         val factory=AttendanceViewModelFactory(repository)
         attendanceViewModel=ViewModelProvider(this,factory).get(AttendanceViewModel::class.java)
@@ -38,6 +45,7 @@ class MainActivity : AppCompatActivity(), adapter.clickinterface, adapter.editin
             adapter.list=it
             adapter.notifyDataSetChanged()
         })
+
         floatingActionButton.setOnClickListener{
          openDialog()
         }
@@ -60,11 +68,15 @@ class MainActivity : AppCompatActivity(), adapter.clickinterface, adapter.editin
             val prst = prsnt.text.toString()
             val abst = absnt.text.toString()
             if(subject_name.isEmpty() || entrcutoff.isEmpty() || prst.isEmpty() || abst.isEmpty()){
-                Toast.makeText(applicationContext, "Deleted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Please Enter all Details", Toast.LENGTH_SHORT).show()
             }
 
             else if (subject_name.isNotEmpty() && entrcutoff.isNotEmpty() && prst.isNotEmpty() && abst.isNotEmpty()){
                 val c = entrcutoff.toFloat()
+                if(c>=100) {
+                    Toast.makeText(applicationContext, "Cutoff should be less than 100", Toast.LENGTH_SHORT).show()
+                }
+                else{
                 val p = prst.toInt()
                 val a = abst.toInt()
                 var attnd = p*100/(p+a)
@@ -83,19 +95,33 @@ class MainActivity : AppCompatActivity(), adapter.clickinterface, adapter.editin
 
                 val items = AttendanceData(null,subject_name, p, a, c, n)
             attendanceViewModel.insert(items)
-            Toast.makeText(applicationContext, "Inserted", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Course Added", Toast.LENGTH_SHORT).show()
             adapter.notifyDataSetChanged()
                 dialog.dismiss()
         }
+            }
 
     }
         dialog.show()
     }
 
     override fun onItemClick(attendanceData: AttendanceData) {
-        attendanceViewModel.delete(attendanceData)
-        adapter.notifyDataSetChanged()
-        Toast.makeText(applicationContext,"Hata Diya",Toast.LENGTH_SHORT).show()
+        val builder =AlertDialog.Builder(this)
+       builder.setTitle("Delete!")
+        builder.setMessage("Are you sure you want to delete?")
+
+        builder.setPositiveButton("Yes"){dialogInterface, which->
+            attendanceViewModel.delete(attendanceData)
+            adapter.notifyDataSetChanged()
+            Toast.makeText(applicationContext,"Deleted",Toast.LENGTH_SHORT).show()
+        }
+        builder.setNegativeButton("No"){dialogInterface, which ->
+        }
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+
+
     }
 
     override fun oneditClick(attendanceData: AttendanceData) {
@@ -107,8 +133,9 @@ class MainActivity : AppCompatActivity(), adapter.clickinterface, adapter.editin
         val cutoff = dialog.findViewById<EditText>(R.id.cutoff)
         val prsnt = dialog.findViewById<EditText>(R.id.presentclass)
         val absnt = dialog.findViewById<EditText>(R.id.absentclass)
-
-        addbtn.setText("Edit")
+        val heading = dialog.findViewById<TextView>(R.id.Heading)
+        heading.setText("Edit Details" )
+        addbtn.setText("Update")
         cancelbtn.setOnClickListener {
             dialog.dismiss()
         }
@@ -125,30 +152,34 @@ class MainActivity : AppCompatActivity(), adapter.clickinterface, adapter.editin
             val prst = prsnt.text.toString()
             val abst = absnt.text.toString()
             if (subject_name.isEmpty() || entrcutoff.isEmpty() || prst.isEmpty() || abst.isEmpty()) {
-                Toast.makeText(applicationContext, "Deleted", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Please Enter All Data", Toast.LENGTH_SHORT).show()
             } else if (subject_name.isNotEmpty() && entrcutoff.isNotEmpty() && prst.isNotEmpty() && abst.isNotEmpty()) {
                 val c = entrcutoff.toFloat()
-                val p = prst.toInt()
-                val a = abst.toInt()
-                var attnd = p * 100 / (p + a)
-                var n = 0
-                while (attnd < c) {
-                    n += 1
-                    attnd = ((n + p) * 100 / (n + p + a))
-                }
-                while (attnd > c) {
-                    n += 1
-                    attnd = (p * 100 / (n + p + a))
-                    if (attnd < c) {
-                        n -= 1
+                if (c >= 100) {
+                    Toast.makeText(applicationContext, "Cutoff should be less than 100", Toast.LENGTH_SHORT).show()
+                } else {
+                    val p = prst.toInt()
+                    val a = abst.toInt()
+                    var attnd = p * 100 / (p + a)
+                    var n = 0
+                    while (attnd < c) {
+                        n += 1
+                        attnd = ((n + p) * 100 / (n + p + a))
                     }
-                }
+                    while (attnd > c) {
+                        n += 1
+                        attnd = (p * 100 / (n + p + a))
+                        if (attnd < c) {
+                            n -= 1
+                        }
+                    }
 
-                val s = AttendanceData(attendanceData.id, subject_name, p, a, c,n)
-                attendanceViewModel.update(s)
-                Toast.makeText(applicationContext, "Updated", Toast.LENGTH_SHORT).show()
-                adapter.notifyDataSetChanged()
-                dialog.dismiss()
+                    val item = AttendanceData(attendanceData.id, subject_name, p, a, c, n)
+                    attendanceViewModel.update(item)
+                    Toast.makeText(applicationContext, "Updated", Toast.LENGTH_SHORT).show()
+                    adapter.notifyDataSetChanged()
+                    dialog.dismiss()
+                }
             }
         }
 

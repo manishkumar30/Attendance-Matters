@@ -3,14 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:backgroundTint="@color/dialog"
+    >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Subject"
+            android:text="Add Details"
             android:textAllCaps="false"
             android:textAlignment="center"
             android:gravity="center"
@@ -31,17 +33,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.EditText"
-                android:hint="Enter Subject Name"
+                android:hint="Enter Course Name"
                 android:textColorHint="#000000"
-                app:hintTextColor="#000000">
+                app:hintTextColor="#000000"
+                >
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/subject_name"
                     android:inputType="textCapSentences"
-                    android:textColorHint="@color/design_default_color_primary_dark"
-                    android:textColor="@color/design_default_color_primary_dark"
+                    android:textColorHint="#252020"
+                    android:textColor="#252020"
                     android:textSize="18sp"
+                    android:backgroundTint="#178DEA"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -50,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.EditText"
-                android:hint="Enter Cutoff"
+                android:hint="Enter Attendance Cutoff"
                 android:textColorHint="#000000"
                 app:hintTextColor="#000000">
                 <com.google.android.material.textfield.TextInputEditText
@@ -59,9 +63,10 @@
                     android:id="@+id/cutoff"
                     android:maxLength="3"
                     android:inputType="numberDecimal"
-                    android:textColorHint="@color/design_default_color_primary_dark"
-                    android:textColor="@color/design_default_color_primary_dark"
+                    android:textColorHint="#252020"
+                    android:textColor="#252020"
                     android:textSize="18sp"
+                    android:backgroundTint="#178DEA"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -70,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.EditText"
-                android:hint="Enter present"
+                android:hint="Enter no. of Attend Classes"
                 android:textColorHint="#000000"
                 app:hintTextColor="#000000">
                 <com.google.android.material.textfield.TextInputEditText
@@ -78,9 +83,10 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/presentclass"
                     android:inputType="numberDecimal"
-                    android:textColorHint="@color/design_default_color_primary_dark"
-                    android:textColor="@color/design_default_color_primary_dark"
+                    android:textColorHint="#252020"
+                    android:textColor="#252020"
                     android:textSize="18sp"
+                    android:backgroundTint="#178DEA"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -89,17 +95,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 style="@style/Widget.AppCompat.EditText"
-                android:hint="Enter absent"
+                android:hint="Enter no. of Skipped Classes"
                 android:textColorHint="#000000"
-                app:hintTextColor="#000000">
+                app:hintTextColor="#000000"
+                >
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/absentclass"
                     android:inputType="numberDecimal"
-                    android:textColorHint="@color/design_default_color_primary_dark"
-                    android:textColor="@color/design_default_color_primary_dark"
+                    android:textColorHint="#252020"
+                    android:textColor="#252020"
                     android:textSize="18sp"
+                    android:backgroundTint="#178DEA"
                     />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -115,7 +123,9 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:text="Cancel"
+                    android:textColor="#FFFFFF"
                     android:id="@+id/cancel"
+                    android:background="@drawable/button"
                     />
                 <Button
                     android:layout_width="0dp"
@@ -123,7 +133,9 @@
                     android:layout_weight="1"
                     android:layout_margin="8dp"
                     android:text="Add"
+                    android:textColor="#FFFFFF"
                     android:id="@+id/add"
+                    android:background="@drawable/button"
                     />
             </LinearLayout>
         </LinearLayout>

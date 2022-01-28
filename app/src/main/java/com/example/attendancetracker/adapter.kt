@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mikhaellopez.circularprogressbar.CircularProgressBar
+import kotlin.random.Random
 
 class adapter(var list: List<AttendanceData>, val clickInterface:clickinterface, val editInterface: editinterface): RecyclerView.Adapter<adapter.AttendanceViewHolder>() {
 
@@ -18,7 +20,7 @@ class adapter(var list: List<AttendanceData>, val clickInterface:clickinterface,
         val absent=itemView.findViewById<TextView>(R.id.absent)
         val circularProgressBar= itemView.findViewById<CircularProgressBar>(R.id.attendance)
         val attndnce = itemView.findViewById<TextView>(R.id.attndnceperct)
-        val edit = itemView.findViewById<ImageView>(R.id.edit)
+        val edit = itemView.findViewById<RelativeLayout>(R.id.RV)
         val text1 = itemView.findViewById<TextView>(R.id.lectures)
     }
 
@@ -36,9 +38,11 @@ class adapter(var list: List<AttendanceData>, val clickInterface:clickinterface,
     }
 
     override fun onBindViewHolder(holder: AttendanceViewHolder, position: Int) {
+
         holder.subject_name.text=list.get(position).subjectName.toString()
         holder.present.text=list.get(position).totalPresent.toString()
         holder.absent.text=list.get(position).totalAbsent.toString()
+
 
         val a: Float =list.get(position).totalPresent*100/(list.get(position).totalAbsent+list.get(position).totalPresent).toFloat()
         val totalAttendance ="%.1f".format(a).toFloat().toString()+"%"
@@ -46,9 +50,9 @@ class adapter(var list: List<AttendanceData>, val clickInterface:clickinterface,
         holder.circularProgressBar.apply {
             progressMax = 100f
             setProgressWithAnimation(a, 1000)
-            progressBarWidth = 3f
-            backgroundProgressBarWidth = 2f
-            progressBarColor = Color.GREEN
+            progressBarWidth = 4f
+            backgroundProgressBarWidth = 3f
+
         }
 
 

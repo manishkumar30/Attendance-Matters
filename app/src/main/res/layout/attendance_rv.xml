@@ -7,11 +7,12 @@
     app:cardCornerRadius="5dp"
     app:cardElevation="4dp"
     android:layout_margin="10dp"
-    android:backgroundTint="#E2DEEC"
+    android:backgroundTint="@color/background"
     >
   <RelativeLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:id="@+id/RV"
       >
 
       <LinearLayout
@@ -27,9 +28,10 @@
               android:layout_height="wrap_content"
               android:layout_weight="2"
               android:text="Subject Name"
-              android:textSize="20sp"
+              android:textSize="22sp"
+              android:textStyle="bold"
               android:fontFamily="sans-serif"
-              android:textColor="#880E4F"
+              android:textColor="@color/SubjectColor"
               android:padding="4dp"
               android:layout_margin="3dp"
               android:id="@+id/subject"
@@ -53,7 +55,7 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="horizontal"
-              android:weightSum="4"
+              android:weightSum="3"
               android:padding="6dp"
               >
            <LinearLayout
@@ -66,7 +68,7 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:text="Total Present"
-                   android:textColor="@color/design_default_color_primary_dark"
+                   android:textColor="#0C1995"
                    android:layout_margin="4dp"
                    android:textSize="15sp"
                    android:textAlignment="center"
@@ -75,8 +77,9 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:text="5"
+                   android:textColor="@color/number"
                    android:id="@+id/present"
-                   android:textSize="15sp"
+                   android:textSize="18sp"
                    android:gravity="center"
                    android:textAlignment="center"
                    />
@@ -91,7 +94,7 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:text="Total Absent"
-                      android:textColor="@color/design_default_color_primary_dark"
+                      android:textColor="#0C1995"
                       android:layout_margin="4dp"
                       android:textSize="15sp"
                       android:textAlignment="center"
@@ -100,8 +103,9 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:text="15"
+                      android:textColor="@color/number"
                       android:id="@+id/absent"
-                      android:textSize="15sp"
+                      android:textSize="18sp"
                       android:gravity="center"
                       android:textAlignment="center"
                       />
@@ -110,13 +114,13 @@
                   android:layout_width="wrap_content"
                   android:layout_height="wrap_content"
                   android:orientation="vertical"
-                  android:layout_weight="1.5"
+                  android:layout_weight="1"
                   >
                   <TextView
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:text="Attendance"
-                      android:textColor="@color/design_default_color_primary_dark"
+                      android:textColor="#0C1995"
                       android:layout_margin="4dp"
                       android:textSize="15sp"
                       android:textAlignment="center"
@@ -126,41 +130,36 @@
                       android:layout_height="wrap_content"
                       android:layout_gravity="center">
                       <com.mikhaellopez.circularprogressbar.CircularProgressBar
-                          android:layout_width="50dp"
-                          android:layout_height="50dp"
+                          android:layout_width="60dp"
+                          android:layout_height="60dp"
                           android:layout_gravity="center"
                           android:id="@+id/attendance"
                           app:cpb_background_progressbar_color="#b6bbd8"
                           app:cpb_background_progressbar_width="5dp"
                           app:cpb_progress_direction="to_right"
-                          app:cpb_progressbar_color="#3f51b5"
+                          app:cpb_progressbar_color_start="#02355E"
+                          app:cpb_progressbar_color_end="@color/teal_700"
                           app:cpb_progressbar_width="10dp"
                           app:cpb_round_border="false"
                           />
                       <TextView
                           android:layout_width="wrap_content"
                           android:layout_height="wrap_content"
-                          android:text="50%"
+                          android:text="100%"
                           android:layout_alignTop="@id/attendance"
                           android:layout_alignLeft="@id/attendance"
                           android:layout_alignRight="@id/attendance"
                           android:layout_alignBottom="@id/attendance"
-                          android:textSize="12sp"
+                          android:textSize="15sp"
+                          android:textStyle="bold"
                           android:gravity="center"
-                          android:textColor="@color/design_default_color_primary_dark"
+                          android:textColor="@color/number"
                           android:id="@+id/attndnceperct"
                           />
                   </RelativeLayout>
               </LinearLayout>
 
-                  <ImageView
-                      android:layout_width="wrap_content"
-                      android:layout_height="wrap_content"
-                      android:layout_weight="0.5"
-                      android:layout_gravity="center"
-                      android:src="@drawable/ic_baseline_edit_24"
-                      android:id="@+id/edit"
-                      />
+
 
               </LinearLayout>
           <TextView
@@ -168,9 +167,11 @@
               android:layout_height="wrap_content"
               android:text="You need to attend 5 lectures"
               android:gravity="center"
-              android:textColor="#201010"
-              android:background="#D9C4F8"
+              android:textColor="#252020"
+              android:background="#A0BFEF"
               android:id="@+id/lectures"
+              android:padding="5dp"
+              android:textSize="18sp"
               />
       </LinearLayout>
 

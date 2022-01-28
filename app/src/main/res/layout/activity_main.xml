@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:background="@color/white"
     >
 
     <LinearLayout
@@ -29,11 +30,12 @@
             android:layout_height="wrap_content"
             android:text="Attendance Matters"
             android:textSize="30sp"
-            android:textColor="#0D47A1"
+            android:textColor="@color/Attendance"
             android:textStyle="bold"
             android:padding="5dp"
             />
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -41,7 +43,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/banner"
         android:id="@+id/RV"
-        tools:listitem="@layout/attendance_rv"
+         tools:listitem="@layout/attendance_rv"
         app:layout_constraintBottom_toBottomOf="parent"
         />
     <com.google.android.material.floatingactionbutton.FloatingActionButton

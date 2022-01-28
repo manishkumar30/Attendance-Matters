@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="Black">#FFFFFF</color>
+    <color name="SubjectColor">#880E4F</color>
+    <color name="background">#90849C</color>
+    <color name="Total">#0C1995</color>
+    <color name="teal_700">#178DEA</color>
+    <color name="number">#000000</color>
+    <color name="white">#000000</color>
+    <color name="lecture">#A0BFEF</color>
+    <color name="Attendance">#82A8E3</color>
+<color name="dialog">#E0F1FF</color>
+</resources>
